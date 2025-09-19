@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+{% block content %}
+  <h2>Verify Certificate</h2>
+  <form method="POST" action="/verify">
+    <label for="certificate_id">Certificate ID:</label>
+    <input type="text" id="certificate_id" name="certificate_id" required>
+    <button type="submit" class="btn btn-primary">Verify</button>
+  </form>
+  <br>
+  {% if result is not none %}
+    {% if result and cert_details %}
+      <div class="alert alert-success">
+        Certificate is <strong>VALID</strong> in this blockchain.
+        <ul>
+          <li><strong>Student Name:</strong> {{ cert_details.student_name }}</li>
+          <li><strong>Course:</strong> {{ cert_details.course }}</li>
+          <li><strong>Certificate ID:</strong> {{ cert_details.certificate_id }}</li>
+          <li><strong>Timestamp:</strong> {{ cert_details.timestamp }}</li>
+          <li><strong>Block Hash:</strong> <span style="font-family: monospace;">{{ cert_details.hash }}</span></li>
+        </ul>
+      </div>
+    {% else %}
+      <div class="alert alert-danger">
+        Certificate <strong>NOT FOUND</strong> in blockchain records.
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}

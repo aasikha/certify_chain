@@ -1,0 +1,13 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<h2>Add Certificate</h2>
+<form method="POST" action="/add">
+  <label for="student_name">Student Name:</label>
+  <input type="text" id="student_name" name="student_name" required><br><br>
+  <label for="course">Course:</label>
+  <input type="text" id="course" name="course" required><br><br>
+  <label for="certificate_id">Certificate ID:</label>
+  <input type="text" id="certificate_id" name="certificate_id" required><br><br>
+  <input type="submit" value="Add Certificate">
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 shadow">
+  <h3 class="mb-3">Blockchain Records</h3>
+  <div style="overflow-x:auto;">
+    {% if blocks %}
+      <table class="table table-bordered table-striped" style="min-width:900px; table-layout:fixed;">
+        <thead class="table-dark">
+          <tr>
+            <th style="width:40px;">#</th>
+            <th style="width:120px;">Student Name</th>
+            <th style="width:120px;">Course</th>
+            <th style="width:120px;">Certificate ID</th>
+            <th style="width:170px;">Timestamp</th>
+            <th style="width:220px;">Hash</th>
+            <th style="width:220px;">Previous Hash</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in blocks %}
+            {% if block.index != 0 %}
+            <tr>
+              <td>{{ block.index }}</td>
+              <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ block.data.student_name }}</td>
+              <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ block.data.course }}</td>
+              <td style="word-break:break-all;">{{ block.data.certificate_id }}</td>
+              <td style="font-size:smaller;">{{ block.timestamp }}</td>
+              <td style="font-family:monospace; font-size:smaller; word-break:break-all;">{{ block.hash }}</td>
+              <td style="font-family:monospace; font-size:smaller; word-break:break-all;">{{ block.previous_hash }}</td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-warning">No certificates in blockchain yet.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
